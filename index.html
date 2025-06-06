@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Masale - Since 1957</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#AC2222',
+                        secondary: '#87A770',
+                        golden: '#D4A574'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .spice-decoration {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .spice-decoration.animate-from-left {
+            transform: translateX(-100px);
+        }
+
+        .spice-decoration.animate-from-right {
+            transform: translateX(100px);
+        }
+
+        .spice-decoration.animate-from-top {
+            transform: translateY(-100px);
+        }
+
+        .spice-decoration.animate-from-bottom {
+            transform: translateY(100px);
+        }
+
+        .spice-decoration.visible {
+            opacity: 0.8;
+            transform: translateX(0) translateY(0);
+        }
+        
+        .offcanvas {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .offcanvas.show {
+            transform: translateX(0);
+        }
+        
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .product-tab-btn.active {
+            background-color: #FFD700 !important;
+            color: #000 !important;
+        }
+        
+        .product-content {
+            display: none;
+        }
+        
+        .product-content.active {
+            display: grid;
+        }
+        
+        .zigzag-top {
+            background: linear-gradient(135deg, transparent 25%, white 25%, white 50%, transparent 50%, transparent 75%, white 75%);
+            background-size: 20px 20px;
+            height: 20px;
+        }
+        
+        .zigzag-bottom {
+            background: linear-gradient(45deg, transparent 25%, white 25%, white 50%, transparent 50%, transparent 75%, white 75%);
+            background-size: 20px 20px;
+            height: 20px;
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container-custom {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container-custom {
+                padding: 0 2rem;
+            }
+        }
+
+        .bg-spice-img
+        {
+            background-image: url("assets/banner_1.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .bg-texture-img
+        {
+            background-image: url("assets/grey_bg.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #blended img,#whole img
+        {
+            filter: grayscale(1)
+        }
+
+        #blended img:hover,#whole img:hover
+        {
+            filter: grayscale(0)
+        }
+    </style>
+</head>
+<body class="bg-white">
+     <!-- Navbar -->
+     <nav class="bg-primary fixed w-full top-0 z-50 fade-in shadow-lg">
+        <div class="container-custom">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="text-yellow-400 logo-text">
+                        <div class="text-2xl leading-none">JK</div>
+                        <div class="text-xs leading-none mt-1">MASALE</div>
+                    </div>
+                    <span class="ml-3 text-white text-sm font-medium">Since 1957</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Home</a>
+                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About Us</a>
+                    <a href="product.html" class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Product</a>
+                    <a href="awards.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Awards</a>
+                    <a href="careers.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Careers</a>
+                    <a href="contact.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Contact Us</a>
+                    <a href="#" class="text-white hover:text-yellow-400 transition-colors text-sm">Order Online</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Offcanvas Menu -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+    <div id="offcanvas" class="offcanvas fixed top-0 left-0 w-80 h-full bg-white z-50 shadow-xl">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="text-primary font-bold text-xl">
+                    JK MASALE
+                    <span class="block text-sm">Since 1957</span>
+                </div>
+                <button id="close-menu" class="text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <a href="index.html" class="block text-gray-700 py-2">Home</a>
+                <a href="about-us.html" class="block text-gray-700 py-2">About Us</a>
+                <a href="product.html" class="block text-primary font-medium py-2">Product</a>
+                <a href="awards.html" class="block text-gray-700 py-2">Awards</a>
+                <a href="careers.html" class="block text-gray-700 py-2">Careers</a>
+                <a href="contact.html" class="block text-gray-700 py-2">Contact Us</a>
+                <a href="#" class="block text-gray-700 py-2">Order Online</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Banner Section -->
+    <section class="bg-spice-img relative h-screen mt-16 overflow-hidden fade-in bg-primary">
+        <!-- Spice Decorations -->
+        <div class="absolute inset-0 z-10">
+            <!-- Cinnamon sticks -->
+            <!-- <img src="/placeholder.svg?height=100&width=15&text=🥢" alt="Cinnamon" class="spice-decoration animate-from-left top-20 left-10 rotate-45">
+            <img src="/placeholder.svg?height=80&width=12&text=🥢" alt="Cinnamon" class="spice-decoration animate-from-right top-32 right-20 rotate-12">
+            <img src="/placeholder.svg?height=90&width=14&text=🥢" alt="Cinnamon" class="spice-decoration animate-from-bottom bottom-40 left-1/4 -rotate-45">
+             -->
+            <!-- Star anise -->
+            <!-- <img src="/placeholder.svg?height=50&width=50&text=⭐" alt="Star Anise" class="spice-decoration animate-from-left top-40 left-1/4 rotate-45">
+            <img src="/placeholder.svg?height=45&width=45&text=⭐" alt="Star Anise" class="spice-decoration animate-from-right bottom-40 right-1/4 -rotate-12">
+            <img src="/placeholder.svg?height=40&width=40&text=⭐" alt="Star Anise" class="spice-decoration animate-from-left top-1/2 left-20 rotate-90">
+             -->
+            <!-- Bay leaves -->
+            <!-- <img src="/placeholder.svg?height=70&width=35&text=🍃" alt="Bay Leaf" class="spice-decoration animate-from-right top-60 right-10 rotate-12">
+            <img src="/placeholder.svg?height=65&width=32&text=🍃" alt="Bay Leaf" class="spice-decoration animate-from-left bottom-60 left-20 -rotate-45">
+            <img src="/placeholder.svg?height=60&width=30&text=🍃" alt="Bay Leaf" class="spice-decoration animate-from-right top-1/3 right-1/3 rotate-30">
+            
+            Spice bowls -->
+            <!-- <img src="/placeholder.svg?height=140&width=140&text=🥣" alt="Red Chili Bowl" class="spice-decoration animate-from-bottom bottom-20 left-10">
+            <img src="/placeholder.svg?height=120&width=120&text=🥣" alt="Turmeric Bowl" class="spice-decoration animate-from-top top-20 right-32">
+            <img src="/placeholder.svg?height=100&width=100&text=🥣" alt="Spice Bowl" class="spice-decoration animate-from-right top-1/2 right-10">
+            <img src="/placeholder.svg?height=80&width=80&text=🥣" alt="Small Spice Bowl" class="spice-decoration animate-from-bottom bottom-1/3 right-1/4"> -->
+        </div>
+        
+        <div class="relative z-20 flex items-center justify-center h-full text-center text-white px-4">
+            <div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">Welcome to the</h1>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">World of spices</h2>
+                <p class="text-xl md:text-2xl italic font-light">Shudh Khao, Swasth Raho</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Journey Section -->
+    <section class="py-20 bg-orange-50 fade-in relative overflow-hidden bg-texture-img">
+        <!-- Spice decorations -->
+        <img src="assets/03.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-0 opacity-40">
+        <img src="assets/05.png" alt="Star Anise" class="spice-decoration animate-from-right top-0 right-0 opacity-40">
+        <img src="assets/06.png" alt="Cinnamon" class="spice-decoration animate-from-bottom bottom-0 left-0 opacity-40 rotate-45">
+        <img src="assets/07.png" alt="Spice Bowl" class="spice-decoration animate-from-right bottom-0 right-0 opacity-40">
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-600 mb-4">
+                    The journey was started in
+                </h2>
+                <div class="text-6xl md:text-7xl lg:text-8xl font-black text-orange-500">1957</div>
+            </div>
+            <div class="grid gap-12 items-center">
+                <div>
+                    <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                        with a dream to serve the market with pure and hygienic packed spices and food products. This foresight was efficiently guided by Late. Shri. Dhannalal Jain (Kala). He encouraged the team to work with an aim to serve the market with consistency, in quality and services. Hard work and patience paid during the process.
+                    </p>
+                    <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                        JK Spices was one of the first companies to introduce Commercial packed spices in small packaging. Its an honor to inform, JK Spices had initiated to install automatic Cleaning & Sortex Plant of Buhler.
+                    </p>
+                    <button class="text-orange-600 font-medium hover:text-primary transition-colors text-lg">Read More</button>
+                </div>
+                <!-- <div class="relative">
+                    <img src="/placeholder.svg?height=400&width=500&text=History" alt="JK Spices History" class="rounded-lg shadow-lg w-full">
+                </div> -->
+            </div>
+        </div>
+        
+        <!-- Zigzag border -->
+        <div class="zigzag-bottom absolute bottom-0 left-0 right-0"></div>
+    </section>
+    
+    <!-- Our Products Section -->
+    <section class="py-20 bg-primary fade-in relative overflow-hidden">
+        <!-- Spice decorations -->
+        <!-- <img src="/placeholder.svg?height=80&width=40&text=🌶️" alt="Chili" class="spice-decoration animate-from-left top-10 left-10 opacity-30">
+        <img src="/placeholder.svg?height=100&width=25&text=🥢" alt="Cinnamon" class="spice-decoration animate-from-right top-20 right-20 opacity-30 rotate-12">
+         -->
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Our Products</h2>
+                <div class="w-16 h-1 bg-white mx-auto mb-8"></div>
+                <p class="text-base md:text-lg text-white max-w-4xl mx-auto mb-6">
+                    Our product portfolio includes a wide range of whole, ground, blended and processed spices and herbs with quality, credibility and consistency matching global standards.
+                </p>
+                <p class="text-base md:text-lg text-white max-w-4xl mx-auto">
+                    We blend various spice mixes with customized combinations. Also included are other health food and wellness products such as Psyllium Husk, Soya Chunks, Tapioca Seeds and CTC Assam Tea on our portfolio.
+                </p>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="flex flex-wrap justify-center mb-12 gap-2">
+                <button class="product-tab-btn bg-yellow-400 text-black px-4 py-2 text-sm font-medium transition-all active rounded" data-tab="blended">Blended Spices</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="whole">Whole Spices</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="ground">Ground Spices</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="gourmet">Gourmet</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="food">Food Products</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="premium">Premium Spices</button>
+                <button class="product-tab-btn bg-white bg-opacity-20 text-white px-4 py-2 text-sm font-medium transition-all hover:bg-yellow-400 hover:text-black rounded" data-tab="beverages">Beverages</button>
+            </div>
+            
+            <!-- Product Images Grid -->
+            <div id="blended" class="product-content active grid grid-cols-2 md:grid-cols-4">
+                <div class="aspect-square">
+                    <img src="assets/Tadka-masala.jpg" alt="Garam Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Black-Pepper.jpg" alt="Biryani Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/cardamom.jpg" alt="Chicken Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Dry-ginger.jpg" alt="Sambar Powder" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/fenugreek_seed.jpg" alt="Chaat Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Kesar_2.jpg" alt="Pav Bhaji Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/poppy_seed.jpg" alt="Rajma Masala" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Tikka-masala.jpg" alt="Kitchen King" class="w-full h-full object-cover shadow-lg">
+                </div>
+            </div>
+            
+            <div id="whole" class="product-content grid grid-cols-2 md:grid-cols-4">
+                <div class="aspect-square">
+                    <img src="assets/whole_spicy.png" alt="Cardamom" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/soya_chunks.jpg" alt="Cinnamon" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/nigella_sativa.jpg" alt="Cloves" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Pani-puri-Masala.jpg" alt="Star Anise" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Poha-Flattned-rice-flakes.jpg" alt="Bay Leaves" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Curry-powder-new.jpg" alt="Black Pepper" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/gound_spices.png" alt="Cumin Seeds" class="w-full h-full object-cover shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="assets/Kesar_2.jpg" alt="Fennel Seeds" class="w-full h-full object-cover shadow-lg">
+                </div>
+            </div>
+            
+            <!-- <div id="ground" class="product-content grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Turmeric%20Powder" alt="Turmeric Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Red%20Chili" alt="Red Chili Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Coriander" alt="Coriander Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Cumin%20Powder" alt="Cumin Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Black%20Pepper" alt="Black Pepper Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Ginger%20Powder" alt="Ginger Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Garlic%20Powder" alt="Garlic Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Onion%20Powder" alt="Onion Powder" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <div id="gourmet" class="product-content grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Saffron" alt="Saffron" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Truffle%20Salt" alt="Truffle Salt" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Vanilla%20Beans" alt="Vanilla Beans" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Pink%20Salt" alt="Pink Salt" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Exotic%20Herbs" alt="Exotic Herbs" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Specialty%20Blends" alt="Specialty Blends" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Organic%20Spices" alt="Organic Spices" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Rare%20Spices" alt="Rare Spices" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <div id="food" class="product-content grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Psyllium%20Husk" alt="Psyllium Husk" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Soya%20Chunks" alt="Soya Chunks" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Tapioca%20Seeds" alt="Tapioca Seeds" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Quinoa" alt="Quinoa" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Chia%20Seeds" alt="Chia Seeds" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Flax%20Seeds" alt="Flax Seeds" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Oats" alt="Oats" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Millet" alt="Millet" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <div id="premium" class="product-content grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Premium%20Garam" alt="Premium Garam Masala" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Royal%20Biryani" alt="Royal Biryani Masala" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Gold%20Turmeric" alt="Gold Turmeric" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Premium%20Chili" alt="Premium Chili" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Elite%20Cardamom" alt="Elite Cardamom" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Royal%20Cinnamon" alt="Royal Cinnamon" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Premium%20Cloves" alt="Premium Cloves" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Gold%20Pepper" alt="Gold Black Pepper" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <div id="beverages" class="product-content grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=CTC%20Assam%20Tea" alt="CTC Assam Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Green%20Tea" alt="Green Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Masala%20Chai" alt="Masala Chai" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Earl%20Grey" alt="Earl Grey" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Herbal%20Tea" alt="Herbal Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Oolong%20Tea" alt="Oolong Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=White%20Tea" alt="White Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+                <div class="aspect-square">
+                    <img src="/placeholder.svg?height=200&width=200&text=Darjeeling" alt="Darjeeling Tea" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div> -->
+        </div>
+        
+        <!-- Zigzag border -->
+        <div class="zigzag-bottom absolute bottom-0 left-0 right-0"></div>
+    </section>
+    
+    <!-- Infrastructure Section -->
+    <section class="py-20 bg-yellow-400 fade-in relative overflow-hidden">
+        <!-- Spice decorations -->
+        <img src="assets/img-9.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-0 opacity-40">
+        <img src="assets/img-10.png" alt="Spice" class="spice-decoration animate-from-right top-0 right-0 opacity-40 hidden md:block">
+        <img src="assets/img-12.png" alt="Spice Bowl" class="spice-decoration animate-from-bottom bottom-0 right-0 opacity-40">
+        <img src="assets/img-13.png" alt="Star Anise" class="spice-decoration animate-from-left hidden md:block bottom-0 left-0 opacity-40">
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-black mb-8">Infrastructure</h2>
+                <div class="w-16 h-1 bg-black mx-auto mb-8"></div>
+            </div>
+            <div>
+                <div>
+                    <p class="text-base md:text-lg text-black leading-relaxed mb-6">
+                        We use a combination of traditional and modern technology to retain the natural essence of spices. We are ceaselessly working towards building a class of products that are unparalleled in freshness, taste, quality and safety. We are empowered with:
+                    </p>
+                    <div class="text-black font-bold mb-6 text-sm">
+                        Infrastructure | Technology | Work Force | Warehousing | Supply Chain
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <img src="assets/infrastrucure-01.jpg" alt="Infrastructure 1" class="rounded shadow-lg">
+                        <img src="assets/infrastrucure-02.jpg" alt="Infrastructure 2" class="rounded shadow-lg">
+                        <img src="assets/infrastrucure-03.jpg" alt="Infrastructure 3" class="rounded shadow-lg">
+                    </div>
+                    <p class="text-base md:text-lg text-black leading-relaxed">
+                        Therefore, the infrastructure of JK Spices is designed and constantly upgraded considering the importance of above mentioned factors.
+                    </p>
+                </div>
+                <!-- <div>
+                    <img src="/placeholder.svg?height=400&width=500&text=Infrastructure" alt="JK Spices Infrastructure" class="rounded-lg shadow-lg w-full">
+                </div> -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Spice Border Section -->
+    <section class="pt-8 bg-gray-100 fade-in bg-texture-img">
+        <div class="container-custom">
+            <div class="flex justify-center items-center space-x-8">
+                <img src="assets/img_btn_1.png" alt="Star Anise" class="w-[164px]">
+                <img src="assets/img_btn_2.png" alt="Spice" class="w-[164px]">
+                <img src="assets/img_btn_3.png" alt="Chili" class="w-[164px]">
+                <img src="assets/img_btn_4.png" alt="Cinnamon" class="w-[164px]">
+                <img src="assets/img_btn_5.png" alt="Bay Leaf" class="w-[164px]">
+                <img src="assets/img-15.png" alt="Leaf" class="w-[164px]">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Let's Discuss Section -->
+    <section class="py-20 fade-in relative overflow-hidden">
+        <!-- Spice decorations -->
+        <img src="assets/05.png" alt="Bay Leaf" class="spice-decoration animate-from-left top-10 left-10 opacity-40">
+        <img src="assets/img-14.png" alt="Cinnamon" class="spice-decoration animate-from-left bottom-0 left-0 opacity-40 rotate-45">
+        <img src="assets/img-12.png" alt="Spices" class="spice-decoration animate-from-right bottom-0 right-0 opacity-40">
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-black mb-8">Let's Discuss</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-8"></div>
+                <p class="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
+                    If you wish to know more about India's largest blended-spice company, kindly fill in this contact form.
+                </p>
+            </div>
+            <div>
+                <!-- <div>
+                    <img src="/placeholder.svg?height=400&width=500&text=Contact%20Us" alt="Contact Us" class="rounded-lg shadow-lg w-full">
+                </div> -->
+                <div>
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="text" placeholder="Name" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <input type="text" placeholder="Company" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <input type="text" placeholder="City" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option>Select your Enquiry Type</option>
+                            <option>Product Inquiry</option>
+                            <option>Business Partnership</option>
+                            <option>General Query</option>
+                        </select>
+                        <textarea placeholder="Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        <button type="submit" class="bg-primary text-white py-3 px-8 rounded font-medium hover:bg-red-700 transition-colors">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-16 fade-in relative overflow-hidden">
+        <!-- Spice decorations -->
+        <img src="assets/ftr_img.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
+        <img src="assets/ftr_img-2.png" alt="Spice Bowl" class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-8">CONTACT US</h2>
+                <div class="w-16 h-1 bg-white mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">JK SPICES & FOOD</h3>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">HEAD OFFICE</h4>
+                    <p class="text-xs mb-1">22, AMRATOLLA</p>
+                    <p class="text-xs mb-1">STREET, KOLKATA-</p>
+                    <p class="text-xs mb-1">700001</p>
+                    <p class="text-xs mb-1">WEST BENGAL, INDIA</p>
+                    <p class="text-xs">PH.: +91-33-2235 0255</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">JAIN BROTHERS</h4>
+                    <p class="text-xs mb-1">C-163, OLD GUNJ</p>
+                    <p class="text-xs mb-1">BAZAR,</p>
+                    <p class="text-xs mb-1">KHADIA, UNJHA -</p>
+                    <p class="text-xs mb-1">384170</p>
+                    <p class="text-xs mb-1">(N.G), INDIA</p>
+                    <p class="text-xs">PH.: +91-276-725 4467,</p>
+                    <p class="text-xs">+91-2767-254467</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">GANESH LAL JAY KUMAR</h4>
+                    <p class="text-xs mb-1">8-B, AMRATOLLA</p>
+                    <p class="text-xs mb-1">STREET,</p>
+                    <p class="text-xs mb-1">KOLKATA-700001</p>
+                    <p class="text-xs mb-1">WEST BENGAL, INDIA</p>
+                    <p class="text-xs">PH.: +91-33-2235 1845,</p>
+                    <p class="text-xs">+91-33-2235 1458</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">GANESH LAL JAY KUMAR & SONS</h4>
+                    <p class="text-xs mb-1">SPECIAL D-3 CHAND</p>
+                    <p class="text-xs mb-1">POLE</p>
+                    <p class="text-xs mb-1">ANAJ MANDI, JAIPUR,</p>
+                    <p class="text-xs mb-1">RAJASTHAN, INDIA</p>
+                    <p class="text-xs">PH.: +91-141-237 4030</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-30 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex flex-wrap justify-center space-x-6 mb-4 md:mb-0 text-xs">
+                        <a href="#" class="hover:text-yellow-400 transition-colors">HOME</a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors">ABOUT US</a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors">PRODUCT</a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors">AWARDS</a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors">CAREERS</a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors">CONTACT US</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs">info@jkspices.com</span>
+                        <div class="flex space-x-2">
+                            <a href="#" class="w-6 h-6 bg-blue-600 rounded text-center text-xs leading-6">f</a>
+                            <a href="#" class="w-6 h-6 bg-pink-600 rounded text-center text-xs leading-6">📷</a>
+                            <a href="#" class="w-6 h-6 bg-red-600 rounded text-center text-xs leading-6">📺</a>
+                            <a href="#" class="w-6 h-6 bg-blue-500 rounded text-center text-xs leading-6">in</a>
+                            <a href="#" class="w-6 h-6 bg-blue-400 rounded text-center text-xs leading-6">🐦</a>
+                        </div>
+                        <span class="text-xs">JKCart.com</span>
+                    </div>
+                </div>
+                <div class="text-center mt-8 text-xs text-gray-300">
+                    <p>Copyright © 2021. All Rights Are Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const offcanvas = document.getElementById('offcanvas');
+        const overlay = document.getElementById('overlay');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            offcanvas.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            offcanvas.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        overlay.addEventListener('click', () => {
+            offcanvas.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        // Product Tabs
+        const tabButtons = document.querySelectorAll('.product-tab-btn');
+        const productContents = document.querySelectorAll('.product-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-yellow-400', 'text-black');
+                    btn.classList.add('bg-white', 'bg-opacity-20', 'text-white');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-yellow-400', 'text-black');
+                button.classList.remove('bg-white', 'bg-opacity-20', 'text-white');
+                
+                // Hide all product contents
+                productContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show target content
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+        
+        // Scroll Animation for all elements including spice decorations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements and spice decorations
+        document.querySelectorAll('.fade-in, .spice-decoration').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - JK Masale - Since 1957</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#AC2222',
+                        secondary: '#87A770',
+                        golden: '#D4A574'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .spice-decoration {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .spice-decoration.animate-from-left {
+            transform: translateX(-100px);
+        }
+
+        .spice-decoration.animate-from-right {
+            transform: translateX(100px);
+        }
+
+        .spice-decoration.animate-from-top {
+            transform: translateY(-100px);
+        }
+
+        .spice-decoration.animate-from-bottom {
+            transform: translateY(100px);
+        }
+
+        .spice-decoration.visible {
+            opacity: 0.6;
+            transform: translateX(0) translateY(0);
+        }
+        
+        .offcanvas {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .offcanvas.show {
+            transform: translateX(0);
+        }
+        
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container-custom {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container-custom {
+                padding: 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="bg-primary fixed w-full top-0 z-50 fade-in shadow-lg">
+        <div class="container-custom">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="text-yellow-400 logo-text">
+                        <div class="text-2xl leading-none">JK</div>
+                        <div class="text-xs leading-none mt-1">MASALE</div>
+                    </div>
+                    <span class="ml-3 text-white text-sm font-medium">Since 1957</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Home</a>
+                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About Us</a>
+                    <a href="product.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Product</a>
+                    <a href="awards.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Awards</a>
+                    <a href="careers.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Careers</a>
+                    <a href="contact.html" class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Contact Us</a>
+                    <a href="#" class="text-white hover:text-yellow-400 transition-colors text-sm">Order Online</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Offcanvas Menu -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+    <div id="offcanvas" class="offcanvas fixed top-0 left-0 w-80 h-full bg-white z-50 shadow-xl">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="text-primary font-bold text-xl">
+                    JK MASALE
+                    <span class="block text-sm">Since 1957</span>
+                </div>
+                <button id="close-menu" class="text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <a href="index.html" class="block text-gray-700 py-2">Home</a>
+                <a href="about-us.html" class="block text-gray-700 py-2">About Us</a>
+                <a href="product.html" class="block text-gray-700 py-2">Product</a>
+                <a href="awards.html" class="block text-gray-700 py-2">Awards</a>
+                <a href="careers.html" class="block text-gray-700 py-2">Careers</a>
+                <a href="contact.html" class="block text-primary font-medium py-2">Contact Us</a>
+                <a href="#" class="block text-gray-700 py-2">Order Online</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="pt-16 bg-orange-50 min-h-screen relative overflow-hidden">
+        <!-- Spice Decorations -->
+        <img src="assets/about_left_spoon.png" alt="Spice Bowl" class="spice-decoration animate-from-left top-32 left-0 opacity-50">
+        <img src="assets/img-13.png" alt="Red Chili Bowl" class="spice-decoration animate-from-right top-1/3 right-0 opacity-50">
+        <img src="assets/about_top_left_img.png" alt="Cinnamon" class="spice-decoration animate-from-left bottom-1/3 left-0 opacity-40 rotate-45">
+        <img src="assets/06.png" alt="Turmeric Bowl" class="spice-decoration animate-from-bottom bottom-20 right-0 opacity-50">
+        
+        <div class="container-custom relative z-10 py-12">
+            <!-- Contact Section -->
+            <section class="fade-in">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Information -->
+                    <div>
+                        <h1 class="text-4xl md:text-5xl font-bold text-orange-600 mb-8">Contact Us</h1>
+                        
+                        <div class="space-y-8">
+                            <!-- JK Spices & Food Products -->
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-primary font-bold text-lg mb-2">JK Spices & Food Products</h3>
+                                <h4 class="text-primary font-medium mb-4">HEAD OFFICE</h4>
+                                <div class="text-gray-700 space-y-1">
+                                    <p>22, Amratolla Street,</p>
+                                    <p>Kolkata-700001</p>
+                                    <p>West Bengal, India</p>
+                                    <p className="font-medium">Ph.: +91-33-2235 0255</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Jain Brothers -->
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h4 class="text-primary font-medium mb-4">Jain Brothers</h4>
+                                <div class="text-gray-700 space-y-1">
+                                    <p>C-163, Old Gunj Bazar,</p>
+                                    <p>Khadia, Unjha - 384170</p>
+                                    <p>(N.G), India</p>
+                                    <p className="font-medium">Ph.: +91-276-725 4467,</p>
+                                    <p className="font-medium">+91-2767-254467</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Ganesh Lal Jay Kumar -->
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h4 class="text-primary font-medium mb-4">Ganesh Lal Jay Kumar</h4>
+                                <div class="text-gray-700 space-y-1">
+                                    <p>8-B, Amratolla Street,</p>
+                                    <p>Kolkata-700001</p>
+                                    <p>West Bengal, India</p>
+                                    <p className="font-medium">Ph.: +91-33-2235 1845,</p>
+                                    <p className="font-medium">+91-33-2235 1458</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Ganesh Lal Jay Kumar & Sons -->
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h4 class="text-primary font-medium mb-4">Ganesh Lal Jay Kumar & Sons</h4>
+                                <div class="text-gray-700 space-y-1">
+                                    <p>Special D-3 Chand pole</p>
+                                    <p>Anaj Mandi, Jaipur,</p>
+                                    <p>Rajasthan, India</p>
+                                    <p className="font-medium">Ph.: +91-141-237 4030</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div>
+                        <div class="bg-white p-8 rounded-lg shadow-lg">
+                            <p class="text-gray-700 mb-8 text-lg">
+                                If you wish to know more about India's largest blended-spice company, kindly fill in this contact form.
+                            </p>
+                            
+                            <form class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Name*</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Company</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Email*</label>
+                                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Phone*</label>
+                                    <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">City*</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Enquiry Type*</label>
+                                    <select required class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="">Select your Enquiry Type</option>
+                                        <option value="product">Product Inquiry</option>
+                                        <option value="business">Business Partnership</option>
+                                        <option value="distribution">Distribution</option>
+                                        <option value="export">Export Inquiry</option>
+                                        <option value="general">General Query</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2">Message*</label>
+                                    <textarea required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Please describe your inquiry..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="bg-primary text-white py-3 px-8 rounded font-medium hover:bg-red-700 transition-colors">SUBMIT</button>
+                            </form>
+                            
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                    <div class="flex items-center">
+                                        <span class="text-primary mr-2">📞</span>
+                                        <span>+91 99095 88007</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-primary mr-2">✉️</span>
+                                        <span>info@jkspices.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-16 fade-in relative overflow-hidden">
+        <!-- Spice decorations -->
+        <img src="assets/ftr_img.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
+        <img src="assets/ftr_img-2.png" alt="Spice Bowl" class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
+        
+        <div class="container-custom relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-8">CONTACT US</h2>
+                <div class="w-16 h-1 bg-white mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">JK SPICES & FOOD PRODUCTS</h3>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">HEAD OFFICE</h4>
+                    <p class="text-xs mb-1">22, AMRATOLLA STREET,</p>
+                    <p class="text-xs mb-1">KOLKATA - 700001</p>
+                    <p class="text-xs mb-1">WEST BENGAL, INDIA</p>
+                    <p class="text-xs">PH.: +91-33-2235 0255</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">JAIN BROTHERS</h4>
+                    <p class="text-xs mb-1">C-163, OLD GUNJ BAZAR,</p>
+                    <p class="text-xs mb-1">KHADIA, UNJHA - 384170</p>
+                    <p class="text-xs mb-1">(N.G), INDIA</p>
+                    <p class="text-xs">PH.: +91-276-725 4467,</p>
+                    <p class="text-xs">+91-2767-254467</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">GANESH LAL JAY KUMAR</h4>
+                    <p class="text-xs mb-1">8-B, AMRATOLLA STREET,</p>
+                    <p class="text-xs mb-1">KOLKATA-700001</p>
+                    <p class="text-xs mb-1">WEST BENGAL, INDIA</p>
+                    <p class="text-xs">PH.: +91-33-2235 1845,</p>
+                    <p class="text-xs">+91-33-2235 1458</p>
+                </div>
+                <div>
+                    <h4 class="text-yellow-400 font-medium mb-2 text-sm">GANESH LAL JAY KUMAR & SONS</h4>
+                    <p class="text-xs mb-1">SPECIAL D-3 CHAND POLE</p>
+                    <p class="text-xs mb-1">ANAJ MANDI, JAIPUR,</p>
+                    <p class="text-xs mb-1">RAJASTHAN, INDIA</p>
+                    <p class="text-xs">PH.: +91-141-237 4030</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-30 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex flex-wrap justify-center space-x-6 mb-4 md:mb-0 text-xs">
+                        <a href="index.html" class="hover:text-yellow-400 transition-colors">HOME</a>
+                        <a href="about-us.html" class="hover:text-yellow-400 transition-colors">ABOUT US</a>
+                        <a href="product.html" class="hover:text-yellow-400 transition-colors">PRODUCT</a>
+                        <a href="awards.html" class="hover:text-yellow-400 transition-colors">AWARDS</a>
+                        <a href="careers.html" class="hover:text-yellow-400 transition-colors">CAREERS</a>
+                        <a href="contact.html" class="hover:text-yellow-400 transition-colors">CONTACT US</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs">info@jkspices.com</span>
+                        <div class="flex space-x-2">
+                            <a href="#" class="w-6 h-6 bg-blue-600 rounded text-center text-xs leading-6">f</a>
+                            <a href="#" class="w-6 h-6 bg-pink-600 rounded text-center text-xs leading-6">📷</a>
+                            <a href="#" class="w-6 h-6 bg-red-600 rounded text-center text-xs leading-6">📺</a>
+                            <a href="#" class="w-6 h-6 bg-blue-500 rounded text-center text-xs leading-6">in</a>
+                            <a href="#" class="w-6 h-6 bg-blue-400 rounded text-center text-xs leading-6">🐦</a>
+                        </div>
+                        <span class="text-xs">JKCart.com</span>
+                    </div>
+                </div>
+                <div class="text-center mt-8 text-xs text-gray-300">
+                    <p>Copyright © 2021. All Rights Are Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const offcanvas = document.getElementById('offcanvas');
+        const overlay = document.getElementById('overlay');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            offcanvas.classList.add('show');
+            overlay.classList.add('show');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            offcanvas.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        overlay.addEventListener('click', () => {
+            offcanvas.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+        
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .spice-decoration').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
