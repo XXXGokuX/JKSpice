@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers - JK Masale - Since 1957</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -24,22 +26,22 @@
             font-family: 'Inter', sans-serif;
             box-sizing: border-box;
         }
-        
+
         body {
             overflow-x: hidden;
         }
-        
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        
+
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .spice-decoration {
             position: absolute;
             z-index: 1;
@@ -68,44 +70,44 @@
             opacity: 0.6;
             transform: translateX(0) translateY(0);
         }
-        
+
         .offcanvas {
             transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
         }
-        
+
         .offcanvas.show {
             transform: translateX(0);
         }
-        
+
         .overlay {
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .overlay.show {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .logo-text {
             font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .container-custom {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
-        
+
         @media (min-width: 640px) {
             .container-custom {
                 padding: 0 1.5rem;
             }
         }
-        
+
         @media (min-width: 1024px) {
             .container-custom {
                 padding: 0 2rem;
@@ -113,6 +115,7 @@
         }
     </style>
 </head>
+
 <body class="bg-white">
     <!-- Navbar -->
     <nav class="bg-primary fixed w-full top-0 z-50 fade-in shadow-lg">
@@ -120,46 +123,50 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="text-yellow-400 logo-text">
-                        <div class="text-2xl leading-none">JK</div>
-                        <div class="text-xs leading-none mt-1">MASALE</div>
-                    </div>
-                    <span class="ml-3 text-white text-sm font-medium">Since 1957</span>
+                    <!-- Replace text logo with image logo -->
+                    <img src="./assets/Logo (3).png" alt="Cook Smart Logo" class="h-24">
+                    <!-- Adjust height as needed -->
+                    <span class="ml-3 text-white text-sm font-medium hidden md:visible">Since 1957</span>
                 </div>
-                
+
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex space-x-8">
                     <a href="index.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Home</a>
-                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About Us</a>
-                    <a href="product.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Product</a>
+                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About
+                        Us</a>
+                    <a href="product.html"
+                        class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Product</a>
                     <a href="awards.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Awards</a>
-                    <a href="careers.html" class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Careers</a>
-                    <a href="contact.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Contact Us</a>
-                    <a href="#" class="text-white hover:text-yellow-400 transition-colors text-sm">Order Online</a>
+                    <a href="careers.html"
+                        class="text-white hover:text-yellow-400 transition-colors text-sm">Careers</a>
+                    <a href="contact.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Contact
+                        Us</a>
                 </div>
-                
+
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="lg:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Offcanvas Menu -->
     <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     <div id="offcanvas" class="offcanvas fixed top-0 left-0 w-80 h-full bg-white z-50 shadow-xl">
         <div class="p-6">
             <div class="flex justify-between items-center mb-8">
                 <div class="text-primary font-bold text-xl">
-                    JK MASALE
-                    <span class="block text-sm">Since 1957</span>
+                    COOK SMART
+                    <span class="block text-sm">Since 2025</span>
                 </div>
                 <button id="close-menu" class="text-gray-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
             </div>
@@ -174,91 +181,108 @@
             </nav>
         </div>
     </div>
-    
+
     <!-- Main Content -->
     <main class="pt-16 bg-orange-50 min-h-screen relative overflow-hidden">
         <!-- Spice Decorations -->
-        <img src="assets/about_left_spoon.png" alt="Spice Bowl" class="spice-decoration animate-from-left top-32 left-0 opacity-50">
-        <img src="assets/img-13.png" alt="Red Chili Bowl" class="spice-decoration animate-from-right top-1/3 right-0 opacity-50">
-        <img src="assets/about_top_left_img.png" alt="Cinnamon" class="spice-decoration animate-from-left bottom-1/3 left-0 opacity-40 rotate-45">
-        <img src="assets/06.png" alt="Turmeric Bowl" class="spice-decoration animate-from-bottom bottom-20 right-0 opacity-50">
-        
+        <img src="assets/about_left_spoon.png" alt="Spice Bowl"
+            class="spice-decoration animate-from-left top-32 left-0 opacity-50">
+        <img src="assets/img-13.png" alt="Red Chili Bowl"
+            class="spice-decoration animate-from-right top-1/3 right-0 opacity-50">
+        <img src="assets/about_top_left_img.png" alt="Cinnamon"
+            class="spice-decoration animate-from-left bottom-1/3 left-0 opacity-40 rotate-45">
+        <img src="assets/06.png" alt="Turmeric Bowl"
+            class="spice-decoration animate-from-bottom bottom-20 right-0 opacity-50">
+
         <div class="container-custom relative z-10 py-12">
             <!-- Careers Section -->
             <section class="fade-in">
                 <div class="max-w-4xl mx-auto">
                     <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-12">Careers</h1>
-                    
                     <div class="space-y-8 text-gray-700">
                         <p class="text-lg md:text-xl leading-relaxed text-center">
-                            There are jobs and there are careers. The chance to do the kind of work that adds up to something meaningful. The opportunity to challenge yourself and learn new skills. The prospect of being surrounded by smart, ambitious, motivated people, day-in and day-out. That's the kind of work you can expect to do at JK Masale. Sound appealing?
+                            There are jobs and then there are opportunities to grow with purpose. At Cooksmart, we
+                            believe in doing work that makes a meaningful impact. If you're passionate about food
+                            innovation, quality, and service, you’ll thrive with us. Surround yourself with ambitious,
+                            forward-thinking people—and start building a career that matters.
                         </p>
-                        
+
                         <div class="text-center py-12">
                             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                                Come Join <span class="text-primary">Us</span>
+                                Come Join <span class="text-primary">Cooksmart</span>
                             </h2>
-                            
+
                             <p class="text-lg md:text-xl leading-relaxed mb-8">
-                                You can email your CV along with the kind of position you are looking for to the HR at 
-                                <a href="mailto:jobs@jkspices.in" class="text-primary font-medium hover:underline">jobs@jkspices.in</a>
+                                You can email your CV along with the kind of position you are looking for to our HR team
+                                at
+                                <a href="mailto:jobs@cooksmartfoods.com"
+                                    class="text-primary font-medium hover:underline">jobs@cooksmartfoods.com</a>
                             </p>
-                            
+
                             <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
                                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Current Openings</h3>
-                                
+
                                 <div class="space-y-4 text-left">
                                     <div class="border-l-4 border-primary pl-4">
                                         <h4 class="font-semibold text-lg text-gray-800">Sales Executive</h4>
-                                        <p class="text-gray-600">Experience: 2-5 years | Location: Kolkata, Mumbai, Delhi</p>
+                                        <p class="text-gray-600">Experience: 2–5 years | Location: Kolkata, Mumbai,
+                                            Delhi</p>
                                     </div>
-                                    
+
                                     <div class="border-l-4 border-primary pl-4">
-                                        <h4 class="font-semibold text-lg text-gray-800">Quality Control Manager</h4>
-                                        <p class="text-gray-600">Experience: 5-8 years | Location: Unjha, Gujarat</p>
+                                        <h4 class="font-semibold text-lg text-gray-800">Quality Assurance Officer</h4>
+                                        <p class="text-gray-600">Experience: 3–6 years | Location: Howrah, West Bengal
+                                        </p>
                                     </div>
-                                    
+
                                     <div class="border-l-4 border-primary pl-4">
-                                        <h4 class="font-semibold text-lg text-gray-800">Marketing Specialist</h4>
-                                        <p class="text-gray-600">Experience: 3-6 years | Location: Jaipur, Rajasthan</p>
+                                        <h4 class="font-semibold text-lg text-gray-800">Marketing Coordinator</h4>
+                                        <p class="text-gray-600">Experience: 2–4 years | Location: Jaipur, Rajasthan</p>
                                     </div>
-                                    
+
                                     <div class="border-l-4 border-primary pl-4">
                                         <h4 class="font-semibold text-lg text-gray-800">Production Supervisor</h4>
-                                        <p class="text-gray-600">Experience: 4-7 years | Location: Unjha, Gujarat</p>
+                                        <p class="text-gray-600">Experience: 4–7 years | Location: Howrah, West Bengal
+                                        </p>
                                     </div>
-                                    
+
                                     <div class="border-l-4 border-primary pl-4">
-                                        <h4 class="font-semibold text-lg text-gray-800">HR Executive</h4>
-                                        <p class="text-gray-600">Experience: 2-4 years | Location: Kolkata, West Bengal</p>
+                                        <h4 class="font-semibold text-lg text-gray-800">Supply Chain Analyst</h4>
+                                        <p class="text-gray-600">Experience: 2–5 years | Location: Remote / Hybrid</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mt-8 p-4 bg-orange-50 rounded-lg">
                                     <p class="text-sm text-gray-600">
-                                        <strong>Note:</strong> We are always looking for talented individuals. Even if you don't see a position that matches your profile, feel free to send us your resume. We'll keep it on file for future opportunities.
+                                        <strong>Note:</strong> Don’t see the right role for you? We’re always interested
+                                        in talented individuals. Feel free to share your profile with us—we’ll keep it
+                                        in mind for future opportunities.
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <div class="mt-12 bg-primary text-white p-8 rounded-lg">
-                                <h3 class="text-2xl font-bold mb-4">Why Work With Us?</h3>
+                                <h3 class="text-2xl font-bold mb-4">Why Work With Cooksmart?</h3>
                                 <div class="grid md:grid-cols-2 gap-6 text-left">
                                     <div>
-                                        <h4 class="font-semibold mb-2">🌟 Growth Opportunities</h4>
-                                        <p class="text-sm">Continuous learning and career advancement in a growing company</p>
+                                        <h4 class="font-semibold mb-2">🌱 Career Growth</h4>
+                                        <p class="text-sm">Thrive in a performance-driven environment with ample
+                                            learning opportunities</p>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold mb-2">🤝 Collaborative Environment</h4>
-                                        <p class="text-sm">Work with passionate professionals who value teamwork</p>
+                                        <h4 class="font-semibold mb-2">🤝 Collaborative Culture</h4>
+                                        <p class="text-sm">Join a team that values respect, ideas, and shared success
+                                        </p>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold mb-2">💰 Competitive Benefits</h4>
-                                        <p class="text-sm">Attractive salary packages with comprehensive benefits</p>
+                                        <h4 class="font-semibold mb-2">💼 Competitive Packages</h4>
+                                        <p class="text-sm">We offer fair compensation and benefits tailored to support
+                                            your well-being</p>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold mb-2">🏆 Industry Leadership</h4>
-                                        <p class="text-sm">Be part of India's leading spice company since 1957</p>
+                                        <h4 class="font-semibold mb-2">🏅 Quality-Driven Mission</h4>
+                                        <p class="text-sm">Be part of India’s leading movement for premium, pure, and
+                                            smart food solutions</p>
                                     </div>
                                 </div>
                             </div>
@@ -266,24 +290,27 @@
                     </div>
                 </div>
             </section>
+
         </div>
     </main>
-    
+
     <!-- Footer -->
     <footer class="bg-primary text-white py-16 fade-in relative overflow-hidden">
         <!-- Spice decorations -->
-        <img src="assets/ftr_img.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
-        <img src="assets/ftr_img-2.png" alt="Spice Bowl" class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
-        
+        <img src="assets/ftr_img.png" alt="Spice"
+            class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
+        <img src="assets/ftr_img-2.png" alt="Spice Bowl"
+            class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
+
         <div class="container-custom relative z-10">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-8">CONTACT US</h2>
                 <div class="w-16 h-1 bg-white mx-auto"></div>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">JK SPICES & FOOD PRODUCTS</h3>
+                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">COOK SMART</h3>
                     <h4 class="text-yellow-400 font-medium mb-2 text-sm">HEAD OFFICE</h4>
                     <p class="text-xs mb-1">22, AMRATOLLA STREET,</p>
                     <p class="text-xs mb-1">KOLKATA - 700001</p>
@@ -314,7 +341,7 @@
                     <p class="text-xs">PH.: +91-141-237 4030</p>
                 </div>
             </div>
-            
+
             <div class="border-t border-white border-opacity-30 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="flex flex-wrap justify-center space-x-6 mb-4 md:mb-0 text-xs">
@@ -343,35 +370,35 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const offcanvas = document.getElementById('offcanvas');
         const overlay = document.getElementById('overlay');
         const closeMenu = document.getElementById('close-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             offcanvas.classList.add('show');
             overlay.classList.add('show');
         });
-        
+
         closeMenu.addEventListener('click', () => {
             offcanvas.classList.remove('show');
             overlay.classList.remove('show');
         });
-        
+
         overlay.addEventListener('click', () => {
             offcanvas.classList.remove('show');
             overlay.classList.remove('show');
         });
-        
+
         // Scroll Animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -385,4 +412,5 @@
         });
     </script>
 </body>
+
 </html>

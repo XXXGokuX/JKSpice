@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products - JK Masale - Since 1957</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -24,22 +26,22 @@
             font-family: 'Inter', sans-serif;
             box-sizing: border-box;
         }
-        
+
         body {
             overflow-x: hidden;
         }
-        
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        
+
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .spice-decoration {
             position: absolute;
             z-index: 1;
@@ -68,44 +70,44 @@
             opacity: 0.6;
             transform: translateX(0) translateY(0);
         }
-        
+
         .offcanvas {
             transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
         }
-        
+
         .offcanvas.show {
             transform: translateX(0);
         }
-        
+
         .overlay {
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .overlay.show {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .logo-text {
             font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .container-custom {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
-        
+
         @media (min-width: 640px) {
             .container-custom {
                 padding: 0 1.5rem;
             }
         }
-        
+
         @media (min-width: 1024px) {
             .container-custom {
                 padding: 0 2rem;
@@ -144,7 +146,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             color: white;
             font-weight: bold;
             font-size: 1.5rem;
@@ -159,14 +161,14 @@
             }
         }
 
-        .bg-texture-img
-        {
+        .bg-texture-img {
             background-image: url("assets/grey_bg.png");
             background-repeat: no-repeat;
             background-size: cover;
         }
     </style>
 </head>
+
 <body class="bg-white">
     <!-- Navbar -->
     <nav class="bg-primary fixed w-full top-0 z-50 fade-in shadow-lg">
@@ -174,46 +176,50 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="text-yellow-400 logo-text">
-                        <div class="text-2xl leading-none">JK</div>
-                        <div class="text-xs leading-none mt-1">MASALE</div>
-                    </div>
-                    <span class="ml-3 text-white text-sm font-medium">Since 1957</span>
+                    <!-- Replace text logo with image logo -->
+                    <img src="./assets/Logo (3).png" alt="Cook Smart Logo" class="h-24">
+                    <!-- Adjust height as needed -->
+                    <span class="ml-3 text-white text-sm font-medium hidden md:visible">Since 1957</span>
                 </div>
-                
+
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex space-x-8">
                     <a href="index.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Home</a>
-                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About Us</a>
-                    <a href="product.html" class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Product</a>
+                    <a href="about-us.html" class="text-white hover:text-yellow-400 transition-colors text-sm">About
+                        Us</a>
+                    <a href="product.html"
+                        class="text-white font-medium hover:text-yellow-400 transition-colors text-sm">Product</a>
                     <a href="awards.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Awards</a>
-                    <a href="careers.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Careers</a>
-                    <a href="contact.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Contact Us</a>
-                    <a href="#" class="text-white hover:text-yellow-400 transition-colors text-sm">Order Online</a>
+                    <a href="careers.html"
+                        class="text-white hover:text-yellow-400 transition-colors text-sm">Careers</a>
+                    <a href="contact.html" class="text-white hover:text-yellow-400 transition-colors text-sm">Contact
+                        Us</a>
                 </div>
-                
+
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="lg:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Offcanvas Menu -->
     <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     <div id="offcanvas" class="offcanvas fixed top-0 left-0 w-80 h-full bg-white z-50 shadow-xl">
         <div class="p-6">
             <div class="flex justify-between items-center mb-8">
                 <div class="text-primary font-bold text-xl">
-                    JK MASALE
-                    <span class="block text-sm">Since 1957</span>
+                    COOK SMART
+                    <span class="block text-sm">Since 2025</span>
                 </div>
                 <button id="close-menu" class="text-gray-700">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
             </div>
@@ -228,32 +234,38 @@
             </nav>
         </div>
     </div>
-    
+
     <!-- Main Content -->
     <main class="pt-16 bg-orange-50 min-h-screen relative overflow-hidden bg-texture-img">
         <!-- Spice Decorations -->
-        <img src="assets/about_top_img.png" alt="Star Anise" class="spice-decoration animate-from-top top-16 left-1/4 opacity-40">
-        <img src="assets/img-3.png" alt="Star Anise" class="spice-decoration animate-from-top top-16 right-1/3 opacity-40">
-        <img src="assets/about_top_left_img.png" alt="Spice Bowl" class="spice-decoration animate-from-left top-32 left-0 opacity-50">
-        <img src="assets/img-12.png" alt="Red Chili Bowl" class="spice-decoration animate-from-right top-1/3 right-10 opacity-50">
-        <img src="assets/img-1.png" alt="Cinnamon" class="spice-decoration animate-from-right bottom-1/3 right-20 opacity-40 -rotate-30">
-        
+        <img src="assets/about_top_img.png" alt="Star Anise"
+            class="spice-decoration animate-from-top top-16 left-1/4 opacity-40">
+        <img src="assets/img-3.png" alt="Star Anise"
+            class="spice-decoration animate-from-top top-16 right-1/3 opacity-40">
+        <img src="assets/about_top_left_img.png" alt="Spice Bowl"
+            class="spice-decoration animate-from-left top-32 left-0 opacity-50">
+        <img src="assets/img-12.png" alt="Red Chili Bowl"
+            class="spice-decoration animate-from-right top-1/3 right-10 opacity-50">
+        <img src="assets/img-1.png" alt="Cinnamon"
+            class="spice-decoration animate-from-right bottom-1/3 right-20 opacity-40 -rotate-30">
+
         <div class="container-custom relative z-10 py-12">
             <!-- Header Section -->
             <section class="fade-in mb-16">
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold text-orange-600 mb-8">Our Product</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-orange-600 mb-8">Our Products</h1>
                     <div class="max-w-4xl mx-auto space-y-4 text-gray-700">
-                        <p class="text-base md:text-lg leading-relaxed">
-                            Our product portfolio includes a wide range of whole, ground, blended and processed spices and herbs with quality, credibility and consistency matching global standards.
-                        </p>
-                        <p class="text-base md:text-lg leading-relaxed">
-                            We blend various spice mixes with customized combinations. Also included are other health food and wellness products such as Psyllium Husk, Soya Chunks, Tapioca Seeds and CTC Assam Tea on our portfolio.
-                        </p>
+                        <p class="text-base md:text-lg leading-relaxed"> At Cooksmart, we offer a broad range of
+                            high-quality food essentials including whole, ground, and blended spices, as well as rice,
+                            flour, pulses, besan (gram flour), soy chunks, mustard oil, and soybean oil. </p>
+                        <p class="text-base md:text-lg leading-relaxed"> Our spice blends are crafted with custom
+                            formulations to suit every Indian kitchen. We also offer health and wellness products like
+                            Psyllium Husk, Soy Chunks, Tapioca Seeds, and premium CTC Assam Tea — all packed with
+                            purity, taste, and nutrition. </p>
                     </div>
                 </div>
             </section>
-            
+
             <!-- Product Grid -->
             <section class="fade-in mb-16">
                 <div class="product-grid">
@@ -261,37 +273,37 @@
                         <img src="assets/blended_spices.png" alt="All Products" class="opacity-80">
                         <div class="overlay-text">ALL</div>
                     </div>
-                    
+
                     <div class="product-category bg-green-600">
                         <img src="assets/Kesar_2.jpg" alt="Blended Spices" class="opacity-80">
                         <div class="overlay-text">BLENDED<br>SPICES</div>
                     </div>
-                    
+
                     <div class="product-category bg-red-600">
                         <img src="assets/JK-Pepper-Salt-Mix.jpg" alt="Whole Spices" class="opacity-80">
                         <div class="overlay-text">WHOLE<br>SPICES</div>
                     </div>
-                    
+
                     <div class="product-category bg-blue-600">
                         <img src="assets/Curry-powder-new.jpg" alt="Ground Spices" class="opacity-80">
                         <div class="overlay-text">GROUND<br>SPICES</div>
                     </div>
-                    
+
                     <div class="product-category bg-purple-600">
                         <img src="assets/gound_spices.png" alt="Gourmet" class="opacity-80">
                         <div class="overlay-text">GOURMET</div>
                     </div>
-                    
+
                     <div class="product-category bg-orange-600">
                         <img src="assets/mustard_red.jpg" alt="Food Products" class="opacity-80">
                         <div class="overlay-text">FOOD<br>PRODUCTS</div>
                     </div>
-                    
+
                     <div class="product-category bg-pink-600">
                         <img src="assets/Pani-puri-Masala.jpg" alt="Premium Spices" class="opacity-80">
                         <div class="overlay-text">PREMIUM<br>SPICES</div>
                     </div>
-                    
+
                     <div class="product-category bg-teal-600">
                         <img src="assets/Shahi-Biryani-Masala.jpg" alt="Beverages" class="opacity-80">
                         <div class="overlay-text">BEVERAGES</div>
@@ -300,22 +312,24 @@
             </section>
         </div>
     </main>
-    
+
     <!-- Footer -->
     <footer class="bg-primary text-white py-16 fade-in relative overflow-hidden">
         <!-- Spice decorations -->
-        <img src="assets/ftr_img.png" alt="Spice" class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
-        <img src="assets/ftr_img-2.png" alt="Spice Bowl" class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
-        
+        <img src="assets/ftr_img.png" alt="Spice"
+            class="spice-decoration animate-from-left top-0 left-[-54px] opacity-20">
+        <img src="assets/ftr_img-2.png" alt="Spice Bowl"
+            class="spice-decoration animate-from-right bottom-0 right-0 opacity-20">
+
         <div class="container-custom relative z-10">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-8">CONTACT US</h2>
                 <div class="w-16 h-1 bg-white mx-auto"></div>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">JK SPICES & FOOD PRODUCTS</h3>
+                    <h3 class="text-yellow-400 font-bold mb-2 text-sm">COOK SMART</h3>
                     <h4 class="text-yellow-400 font-medium mb-2 text-sm">HEAD OFFICE</h4>
                     <p class="text-xs mb-1">22, AMRATOLLA STREET,</p>
                     <p class="text-xs mb-1">KOLKATA - 700001</p>
@@ -346,7 +360,7 @@
                     <p class="text-xs">PH.: +91-141-237 4030</p>
                 </div>
             </div>
-            
+
             <div class="border-t border-white border-opacity-30 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="flex flex-wrap justify-center space-x-6 mb-4 md:mb-0 text-xs">
@@ -375,35 +389,35 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const offcanvas = document.getElementById('offcanvas');
         const overlay = document.getElementById('overlay');
         const closeMenu = document.getElementById('close-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             offcanvas.classList.add('show');
             overlay.classList.add('show');
         });
-        
+
         closeMenu.addEventListener('click', () => {
             offcanvas.classList.remove('show');
             overlay.classList.remove('show');
         });
-        
+
         overlay.addEventListener('click', () => {
             offcanvas.classList.remove('show');
             overlay.classList.remove('show');
         });
-        
+
         // Scroll Animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -417,4 +431,5 @@
         });
     </script>
 </body>
+
 </html>
